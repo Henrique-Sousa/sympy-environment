@@ -1,9 +1,12 @@
+PYTHON = python3
+PDF_READER = evince 
+
 .PHONY: all
 all: clean see
 
 .PHONY: see
 see: out.pdf
-	evince out.pdf
+	$(PDF_READER) out.pdf
 
 out.pdf: out.latex
 	pdflatex out.latex
@@ -12,7 +15,7 @@ out.latex: head.latex out.txt foot.latex
 	cat head.latex out.txt foot.latex > out.latex
 
 out.txt:
-	python main.py > out.txt
+	$(PYTHON) main.py > out.txt
 	
 .PHONY: clean
 clean:
